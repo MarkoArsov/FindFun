@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: COMMENT-SERVICE
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://serviceregistery:8761/eureka/
+  instance:
+    hostname: localhost

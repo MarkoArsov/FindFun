@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FindFun</title>
+
+    <section th:replace="fragments/links"></section>
+
+    <section th:replace="fragments/leafletLinks"></section>
+
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="/css/addEvent.css">
+
+    <!-- REACT COMPONENTS -->
+    <script type="text/babel" src="/js/eventComponent.js"></script>
+
+    <!-- LOCAL SCRIPT -->
+    <script type="text/babel" src="/js/addEvent.js"></script>
+
+</head>
+<body>
+
+<nav th:replace="fragments/header"></nav>
+
+
+<div class="container">
+
+    <div class="row" id="main-div">
+
+        <div class="col s0 l7" id="add-event-map">
+            MAP
+        </div>
+
+
+        <div class="col s12 l5" id="event-form">
+
+            <div id="title">
+                <h1>Add New Event</h1>
+            </div>
+
+            <form method="POST" action="/events/add" id="addEventForm">
+
+                <input th:if="${event == null}" type="hidden" required name="id" id="id" th:value="0">
+                <input th:if="${event == null}" type="hidden" required name="lat" id="lat">
+                <input th:if="${event == null}" type="hidden" required name="lng" id="lng">
+
+                <input th:if="${event != null}" type="hidden" required name="id" id="id" th:value="${event.getId()}">
+                <input th:if="${event != null}" type="hidden" required name="lat" id="lat" th:value="${event.getLat()}">
+                <input th:if="${event != null}" type="hidden" required name="lng" id="lng" th:value="${event.getLng()}">
+
+
+                <div class="input-field">
+                    <input th:if="${event == null}" type="text" required name="name" placeholder="Event Name" id="name">
+                    <input th:if="${event != null}" type="text" required name="name" placeholder="Event Name" id="name" th:value="${event.getName()}">
+                </div>
+
+                <div class="input-field">
+                    <textarea th:if="${event == null}" name="about" required placeholder="Event Description" id="desc"></textarea>
+                    <textarea th:if="${event != null}" name="about" required placeholder="Event Description" id="desc" th:text="${event.getAbout()}"></textarea>
+                </div>
+
+                <div class="input-field">
+                    <input th:if="${event == null}" type="text" required name="category" placeholder="Category" id="cat">
+                    <input th:if="${event != null}" type="text" required name="category" placeholder="Category" id="cat" th:value="${event.getCategory()}">
+                </div>
+
+                <div class="input-field">
+                    <input th:if="${event == null}" type="text" required name="imgPath" placeholder="Image Url" id="img">
+                    <input th:if="${event != null}" type="text" required name="imgPath" placeholder="Image Url" id="img" th:value="${event.getImgPath()}">
+                </div>
+
+                <div class="input-field">
+                    <input th:if="${event == null}" type="datetime-local" required name="date" id="date"/>
+                    <input th:if="${event != null}" type="datetime-local" required name="date" id="date" th:value="${event.getDate()}" />
+                </div>
+
+                <button class="addEventButton" onclick="submitForm()">
+                    SAVE
+                </button>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</div>
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+
+</html>

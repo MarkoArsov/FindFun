@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FindFun</title>
+    <section th:replace="fragments/links"></section>
+
+    <section th:replace="fragments/leafletLinks"></section>
+
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="/css/invite.css">
+
+
+</head>
+<body>
+<nav th:replace="fragments/header"></nav>
+<div id="container">
+    <h1 id="main_title">You have succesfully created an event!</h1>
+    <h2 id="invite_title">Invite friends to your event</h2>
+    <th:block th:each="friend : ${notInvitedFriends}">
+        <div class="friend_card row">
+            <div class="username col s6"><th:block  th:text="${friend.getUsername()}" ></th:block></div>
+            <div class="col s6">
+                <form action="/events/add_friend" method="post">
+                    <input type="hidden" name="id" th:value="${eventId}">
+                    <input type="hidden" name="friendUsername" th:value="${friend.getUsername()}">
+                    <button class="btn" type="submit">INVITE</button>
+                </form>
+            </div>
+        </div>
+    </th:block>
+    <th:block th:each="friend : ${invitedFriends}">
+        <div class="friend_card row">
+            <div class="username col s6" th:text="${friend.getUsername()}"></div>
+            <div class="invited col s6">INVITED</div>
+
+        </div>
+    </th:block>
+</div>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

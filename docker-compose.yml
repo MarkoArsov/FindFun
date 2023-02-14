@@ -1,0 +1,67 @@
+version: '3.1'
+services:
+  serviceregistery:
+    image: 'findfunreg.azurecr.io/serviceregistry'
+    ports:
+        - "8761:8761"
+
+  comments:
+    image: 'findfunreg.azurecr.io/comments'
+    ports:
+        - "8081:8081"
+    depends_on:
+        - dbcomments
+        - serviceregistery
+    environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://dbcomments:5432/findfuncomments
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=arsov0902
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  dbcomments:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=arsov0902
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=findfuncomments
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/dbcomments/data
+
+  findfun:
+    image: 'findfunreg.azurecr.io/app'
+    ports:
+      - "8085:80"
+    depends_on:
+      - db
+      - comments
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/findfun
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=arsov0902
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  db:
+    image: postgres
+    ports:
+        - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=arsov0902
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=findfun
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/db/data
+
+volumes:
+  db_data:

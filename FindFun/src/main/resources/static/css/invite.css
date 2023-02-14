@@ -1,0 +1,39 @@
+body{
+    color: white;
+}
+#container{
+    align-content: center;
+    text-align: center;
+}
+.friend_card {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+    width: 330px;
+    background: #202020;
+    border-style: solid;
+    padding: 15px 10px;
+}
+#main_title{
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+#invite_title{
+    border-radius: 15px 15px 0 0;
+    background: #F5853F;
+    font-size: 25px;
+    width:330px;
+    height: 60px;
+    margin: auto;
+    padding-top: 15px;
+}
+.btn{
+    border-radius: 15px;
+    background: #F5853F;
+    color: white;
+    font-size: 15px;
+}
+.username{
+    margin: auto;
+}

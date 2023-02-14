@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FindFun</title>
+
+    <section th:replace="fragments/links"></section>
+
+    <section th:replace="fragments/leafletLinks"></section>
+
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- REACT COMPONENTS -->
+    <script type="text/babel" src="/js/eventComponent.js"></script>
+
+    <!-- LOCAL SCRIPT -->
+    <script type="text/babel" src="/js/script.js"></script>
+
+</head>
+
+<body>
+
+<nav th:replace="fragments/header"></nav>
+
+<div class="container">
+
+    <div class="row" id="main-div">
+        <div class="col s12 l5" id="main-events">
+
+            <div class="event-search">
+                <form id="search-form" action="/events/search" method="post">
+                    <div class="input-field">
+                        <input placeholder="Search Events" id="search-input" type="text" name="text" class="validate">
+                    </div>
+                    <input type="hidden" id="search-text" th:value="${searchText}">
+                    <input type="hidden" id="sort-text" th:value="${sortText}">
+                </form>
+
+                <div class="sort-div">
+                    <a th:if="${!sortText.equals('all')}" class="button" href="/events">All</a>
+                    <a th:if="${sortText.equals('all')}" class="buttonActive" href="/events">All</a>
+
+                    <a th:if="${!sortText.equals('recent')}" class="button" href="/events/sort/recent">Recent</a>
+                    <a th:if="${sortText.equals('recent')}" class="buttonActive" href="/events/sort/recent">Recent</a>
+
+                    <a th:if="${!sortText.equals('popular')}" class="button" href="/events/sort/popular">Popular</a>
+                    <a th:if="${sortText.equals('popular')}" class="buttonActive" href="/events/sort/popular">Popular</a>
+                </div>
+
+            </div>
+
+            <div id="list-events">
+
+            </div>
+
+        </div>
+
+        <div class="col s0 l7" id="main-map">
+            MAP
+        </div>
+
+    </div>
+</div>
+
+<footer th:replace="fragments/footer"></footer>
+
+</body>
+
+</html>

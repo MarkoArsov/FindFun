@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+.container .star-widget input{
+    display: none;
+}
+.star-widget label{
+    font-size: 40px;
+    color: #444;
+    padding: 10px;
+    float: right;
+    transition: all 0.2s ease;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label{
+    color: #F5853F;
+}
+input:checked ~ label{
+    color: #F5853F;
+}
+input#rate-5:checked ~ label{
+    color: #faa56e;
+    text-shadow: 0 0 20px #952;
+}
+#rate-1:checked ~ form header:before{
+    content: "I just hate it ";
+}
+#rate-2:checked ~ form header:before{
+    content: "I don't like it ";
+}
+#rate-3:checked ~ form header:before{
+    content: "It is awesome ";
+}
+#rate-4:checked ~ form header:before{
+    content: "I just like it ";
+}
+#rate-5:checked ~ form header:before{
+    content: "I just love it ";
+}
+.container form{
+    display: none;
+}
+input:checked ~ form{
+    display: block;
+}
+
+
+
+body{
+    color: white;
+}
+
+#container {
+    width: 600px;
+    background-color: #202020;
+    margin: 70px auto;
+}
+
+.image{
+    margin-top: 10px;
+    width: 200px;
+    height: 180px;
+}
+
+.image img{
+    margin: auto;
+    max-width:100%;
+}
+
+.content{
+    width: 400px;
+    height: 200px;
+}
+
+.event_name{
+    width: 200px;
+    height: 60px;
+    font-size: 25px;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+.rating{
+    width: 350px;
+    height: 100px;
+}
+.btn{
+    border-radius: 10px;
+    background-color: #F5853F;
+    margin-left: 41%;
+}
+form{
+    width: 350px;
+    margin-left: 22px;
+}
+#rate_events{
+    width: 600px;
+    height: 60px;
+    border-radius: 10px 10px 0 0;
+    background-color: #F5853F;
+}
+h2{
+    text-align: center;
+    margin: 0;
+}
+.rated{
+    margin: auto;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 15px;
+    border-color: #F5853F;
+    color: #F5853F;
+}
+
+.row{
+    margin-top: 15px;
+}

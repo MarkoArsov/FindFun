@@ -1,0 +1,19 @@
+<nav xmlns:th="http://www.thymeleaf.org">
+    <div class="nav-wrapper">
+        <a href="/events" class="brand-logo">FindFun</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <th:block th:if="${session.user == null}" >
+                <li><a href="/login">Log In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            </th:block>
+            <th:block th:if="${session.user != null}" >
+                <li><a href="/events/add">Add New Event</a></li>
+                <li><a href="/user" th:text="${session.user.getUsername()}"></a></li>
+                <li><a href="/events/invitations">Invitations</a></li>
+                <li><a href="/events/rating">Ratings</a></li>
+                <li><a href="/logout">Log Out</a></li>
+            </th:block>
+        </ul>
+    </div>
+</nav>

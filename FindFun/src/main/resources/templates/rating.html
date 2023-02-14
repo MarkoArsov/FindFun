@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>FindFun</title>
+    <section th:replace="fragments/links"></section>
+
+    <section th:replace="fragments/leafletLinks"></section>
+
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="/css/rating.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+
+</head>
+<body>
+<nav th:replace="fragments/header"></nav>
+<div id="container">
+    <div id="rate_events">
+        <h2>Rate events</h2>
+    </div>
+
+    <div class="event row" th:each="event : ${events}">
+
+<!--        <div class="card horizontal">-->
+<!--            <div class="card-image">-->
+<!--                <img th:src="${event.getImgPath()}"/>-->
+<!--            </div>-->
+<!--            <div class="card-stacked">-->
+<!--                <div class="card-content">-->
+<!--                    <p class="eventTitle" th:text="${event.getName()}"></p>-->
+<!--                    <div th:if="${event.getRating() == null}" class="rating row">-->
+<!--                        <form method="post" action="/events/rated">-->
+<!--                            <div class="star-widget col s12">-->
+<!--                                <input type="radio" name="rate" id="rate-5" value="5">-->
+<!--                                <label for="rate-5" class="fas fa-star"></label>-->
+<!--                                <input type="radio" name="rate" id="rate-4" value="4">-->
+<!--                                <label for="rate-4" class="fas fa-star"></label>-->
+<!--                                <input type="radio" name="rate" id="rate-3" value="3">-->
+<!--                                <label for="rate-3" class="fas fa-star"></label>-->
+<!--                                <input type="radio" name="rate" id="rate-2" value="2">-->
+<!--                                <label for="rate-2" class="fas fa-star"></label>-->
+<!--                                <input type="radio" name="rate" id="rate-1" value="1">-->
+<!--                                <label for="rate-1" class="fas fa-star"></label>-->
+<!--                                <input type="hidden" name="id" th:value="${event.getId()}">-->
+<!--                            </div>-->
+<!--                            </br>-->
+<!--                            <div class="button_div col s12">-->
+<!--                                <button class="btn" type="submit">Rate</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                    <div th:unless="${event.getRating() == null}" class="rated col s12">-->
+<!--                        This event has already been rated-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+        <div class="image col s4">
+            <img th:src="${event.getImgPath()}">
+        </div>
+        <div class="content col s8">
+            <div class="event_name">
+                <th:block th:text="${event.getName()}"></th:block>
+            </div>
+            <div th:if="${event.getRating() == null}" class="rating row">
+                <form method="post" action="/events/rated">
+                    <div class="star-widget col s12">
+                        <input type="radio" name="rate" id="rate-5" value="5">
+                        <label for="rate-5" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-4" value="4">
+                        <label for="rate-4" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-3" value="3">
+                        <label for="rate-3" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-2" value="2">
+                        <label for="rate-2" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-1" value="1">
+                        <label for="rate-1" class="fas fa-star"></label>
+                        <input type="hidden" name="id" th:value="${event.getId()}">
+                    </div>
+                    </br>
+                    <div class="button_div col s12">
+                        <button class="btn" type="submit">Rate</button>
+                    </div>
+                </form>
+            </div>
+            <div th:unless="${event.getRating() == null}" class="rated col s12">
+                This event has already been rated
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FindFun</title>
+
+    <section th:replace="fragments/links"></section>
+
+    <section th:replace="fragments/leafletLinks"></section>
+
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/invitation.css">
+
+    <!-- REACT COMPONENTS -->
+    <script type="text/babel" src="/js/eventComponent.js"></script>
+
+    <!-- LOCAL SCRIPT -->
+    <script type="text/babel" src="/js/invite.js"></script>
+
+</head>
+
+<body>
+
+<nav th:replace="fragments/header"></nav>
+
+<div class="container">
+
+    <div class="row" id="main-div">
+        <div class="col s0 l7" id="main-map">
+            MAP
+        </div>
+
+        <div class="col s12 l5" id="main-events">
+
+            <div id="my_invs">My invitations</div>
+
+            <div id="list-events">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer th:replace="fragments/footer"></footer>
+
+</body>
+
+</html>

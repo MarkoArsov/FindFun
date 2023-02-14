@@ -1,0 +1,13 @@
+.leaflet-control-messagebox {
+    display: none;
+    width: 295px;
+    height: 35px;
+    font-size: 20px;
+    border: none;
+    background-color: orange;
+    padding: 3px 10px;
+    color: white;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
