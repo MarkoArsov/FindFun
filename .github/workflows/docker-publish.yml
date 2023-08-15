@@ -34,7 +34,7 @@ jobs:
       - name: List contents of directories
         run: |
           ls -l Comments
-          ls -l FindFund
+          ls -l FindFun
           ls -l service-registry
 
       - name: Build and push Comments Docker image
