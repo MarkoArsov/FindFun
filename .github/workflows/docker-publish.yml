@@ -31,19 +31,30 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: List contents of directories
+      - name: List repository contents
         run: |
-          ls -l Comments
-          ls -l FindFun
-          ls -l service-registry
+          ls -l
 
+      - name: Download JAR files from GitHub release
+        run: |
+          mkdir -p Comments/target
+          mkdir -p FindFun/target
+          mkdir -p service-registry/target
+
+          curl -L -o ./Comments/target/comments.jar \
+            "https://github.com/${{ github.repository }}/releases/download/${{ github.sha }}/Comments.jar"
+          curl -L -o ./FindFun/target/findfun.jar \
+            "https://github.com/${{ github.repository }}/releases/download/${{ github.sha }}/FindFun.jar"
+          curl -L -o ./service-registry/target/service-registry.jar \
+            "https://github.com/${{ github.repository }}/releases/download/${{ github.sha }}/service-registry.jar"
+      
       - name: Build and push Comments Docker image
         uses: docker/build-push-action@v2
         with:
           context: ./Comments
           push: true
           tags: markoarsov/comments-app
-
+      
       - name: Build and push FindFun Docker image
         uses: docker/build-push-action@v2
         with:
@@ -57,3 +68,4 @@ jobs:
           context: ./service-registry
           push: true
           tags: markoarsov/service-registry-app
+
