@@ -29,13 +29,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: List contents of directories
-        run: |
-          ls -l Comments
-          ls -l FindFund
-          ls -l service-registry
+          password: ${{ secrets.DOCKERHUB_TOKEN }
 
       - name: Build and push Comments Docker image
         uses: docker/build-push-action@v2
@@ -44,12 +38,12 @@ jobs:
           push: true
           tags: markoarsov/comments-app
 
-      - name: Build and push FindFund Docker image
+      - name: Build and push FindFun Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./FindFund
+          context: ./FindFun
           push: true
-          tags: markoarsov/find-fund-app
+          tags: markoarsov/find-fun-app
 
       - name: Build and push service-registry Docker image
         uses: docker/build-push-action@v2
