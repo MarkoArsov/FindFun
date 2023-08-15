@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  docker-push-app:
+  docker:
     runs-on: ubuntu-latest
     steps:
       -
